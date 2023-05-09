@@ -1,0 +1,33 @@
+Colvarstrajfrequency    1000
+Colvarsrestartfrequency 1000
+
+colvar {
+
+    name dist
+
+    outputAppliedForce    on
+
+  distance {
+    group1 {atomsFile sting-GGD-box.pdb
+      atomsCol B
+      atomsColValue 1.0
+    }
+    group2 {atomsFile sting-GGD-box.pdb
+      atomsCol B
+      atomsColValue 2.0
+    }
+
+}
+
+
+}
+
+
+harmonic {
+   colvars dist
+   centers 26.0
+   targetCenters 0.00
+   targetNumSteps  5000000
+   forceConstant 5.0
+   outputCenters on
+}
