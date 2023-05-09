@@ -1,0 +1,97 @@
+#Parameters for Amber files/force field in NAMD
+
+amber on
+switching       off
+exclude         scaled1-4
+1-4scaling      0.833333333
+scnb            2.0
+readexclusions  yes
+cutoff          9
+pairListDist    11
+LJcorrection    on
+ZeroMomentum    on
+
+
+#Input/Output file names
+
+parmfile        ../sting-GGD-box.prmtop
+coordinates     ../sting-GGD_eq.coor
+velocities      ../sting-GGD_eq.vel
+extendedSystem  ../sting-GGD_eq.xsc
+
+set outputname   sting-GGD_STD
+    restartname  sting-GGD_STD
+
+dcdFile          sting-GGD_STD.dcd
+binaryrestart no
+outputTiming 2500
+
+#############################################################
+## SIMULATION PARAMETERS                                   ##
+#############################################################
+# Integrator Parameters
+timestep            2.0
+nonbondedFreq       1
+fullElectFrequency  1
+stepspercycle       20
+
+rigidBonds              all
+rigidtolerance          1.0e-8
+rigiditerations         100
+usesettle               on
+
+# CONSTANT-T
+
+ langevin             on
+ langevintemp         300.0
+ langevindamping      1.0
+
+
+ # CONSTANT-P
+
+ langevinpiston       on
+ langevinpistontarget 1
+ langevinpistonperiod 100
+ langevinpistondecay   50
+ langevinpistontemp   300
+
+ StrainRate           0.0 0.0 0.0
+
+
+ # PME
+
+ PME                  yes
+ PMETolerance         10e-6
+ PMEInterpOrder       4
+ PMEGridSpacing       1
+
+
+wrapWater           on
+
+useGroupPressure      yes  # needed for rigidBonds
+useFlexibleCell       no  # membrane simulation
+useConstantArea       no
+useConstantRatio      no
+
+
+# Output
+outputName          $outputname
+restartfreq         5000
+dcdfreq             5000
+xstFreq             5000
+outputEnergies      5000
+outputPressure      5000
+
+DCDunitcell         yes
+
+########################################
+
+colvars              on
+colvarsConfig        colvars.in
+
+
+#############################################################
+## EXECUTION SCRIPT                                        ##
+#############################################################
+run 5000000
+
