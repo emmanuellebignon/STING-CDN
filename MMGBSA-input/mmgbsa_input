@@ -1,0 +1,6 @@
+&general
+startframe=0, endframe=1200, interval=50, indi=4.0, exdi=80.0, 
+/
+&gb
+igb=5, saltcon=0.150,
+/
