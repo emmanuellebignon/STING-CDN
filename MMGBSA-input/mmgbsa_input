@@ -1,6 +1,6 @@
 &general
-startframe=600, endframe=1200, interval=1, indi=4.0, exdi=80.0, 
+startframe=1, endframe=1200, interval=10
 /
-&gb
-igb=5, saltcon=0.150,
+&pb
+istrng=0.150, fillratio=1.50, indi=4.0, exdi=80.0,
 /
